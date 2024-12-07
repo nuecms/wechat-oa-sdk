@@ -1,6 +1,6 @@
-# **Wechat Official Account SDK**
+# **Wechat Official Accounts SDK**
 
-A flexible and lightweight SDK for building Wechat Official Account applications with dynamic endpoints, caching, and response transformations.
+A flexible and lightweight SDK for building Wechat Official Accounts with dynamic endpoints, caching, and response transformations.
 
 [![npm](https://img.shields.io/npm/v/@nuecms/wx-oa-sdk)](https://www.npmjs.com/package/@nuecms/wx-oa-sdk)
 [![GitHub](https://img.shields.io/github/license/nuecms/wx-oa-sdk)](https://www.github.com/nuecms/wx-oa-sdk)
@@ -20,7 +20,7 @@ A flexible and lightweight SDK for building Wechat Official Account applications
 
 ## **Table of Contents**
 
-- [**Wechat Official Account SDK**](#wechat-official-account-sdk)
+- [**Wechat Official Accounts SDK**](#wechat-official-accounts-sdk)
   - [**Features**](#features)
   - [**Table of Contents**](#table-of-contents)
   - [**Installation**](#installation)
