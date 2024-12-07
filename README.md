@@ -1,5 +1,7 @@
 # **Wechat Official Accounts SDK**
 
+> WIP: development in progress
+
 A flexible and lightweight SDK for building Wechat Official Accounts with dynamic endpoints, caching, and response transformations.
 
 [![npm](https://img.shields.io/npm/v/@nuecms/wx-oa-sdk)](https://www.npmjs.com/package/@nuecms/wx-oa-sdk)

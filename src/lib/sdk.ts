@@ -1,4 +1,4 @@
-import { sdkBuilder, SdkBuilder, SdkBuilderConfig, RedisCacheProvider, CacheProvider } from '@nuecms/sdk-builder';
+import { sdkBuilder, SdkBuilderConfig, RedisCacheProvider, CacheProvider } from '@nuecms/sdk-builder/src/index';
 
 interface WeChatSDKConfig {
   appId: string;
@@ -13,7 +13,10 @@ export {
   type WeChatSDKConfig,
 }
 
-export function wxSdk(config: WeChatSDKConfig): SdkBuilder {
+export type WeChatSDK = ReturnType<typeof sdkBuilder>
+
+
+export function wxSdk(config: WeChatSDKConfig): WeChatSDK {
   const sdkConfig: SdkBuilderConfig = {
     baseUrl: config.baseUrl || 'https://api.weixin.qq.com',
     cacheProvider: config.cacheProvider,
@@ -26,7 +29,7 @@ export function wxSdk(config: WeChatSDKConfig): SdkBuilder {
     },
   };
 
-  const sdk: ReturnType<typeof sdkBuilder> = sdkBuilder(sdkConfig);
+  const sdk: WeChatSDK = sdkBuilder(sdkConfig);
 
   // # User Management
   sdk.r('getUserInfo', '/cgi-bin/user/info', 'GET');
@@ -105,7 +108,7 @@ export function wxSdk(config: WeChatSDKConfig): SdkBuilder {
   sdk.r('clearQuota', '/cgi-bin/clear_quota', 'POST');
 
   // Register the auth method
-  sdk.r('authenticate', async (config) => {
+  sdk.rx('authenticate', async (config) => {
     const appId = config.appId;
     const appSecret = config.appSecret
     const cacheKey = `wechat_access_token_${appId}`;
@@ -121,7 +124,7 @@ export function wxSdk(config: WeChatSDKConfig): SdkBuilder {
       access_token: response.access_token,
     };
   })
-
+  sdk.authenticate()
   return sdk;
 }
 

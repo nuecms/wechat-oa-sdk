@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@nuecms/sdk-builder':
-        specifier: ^0.1.6
-        version: 0.1.6
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       '@types/node':
         specifier: ^22.10.1
@@ -602,8 +602,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@nuecms/sdk-builder@0.1.6':
-    resolution: {integrity: sha512-kaBBacvofVJq/x+Yz832iPUei7M/MTbaa/xoz6FCDxGB2fYEdWbbvT+yXIy0Dh5Uejud/BQhD5uLLzTOhvQHdQ==}
+  '@nuecms/sdk-builder@0.2.0':
+    resolution: {integrity: sha512-pXnnUa+xFsP9fHp8DL0seLWPbM0XsteuhYdnGKmo2F7PQM0qkcp7FDqjpD1UoYR7XBazpJigsezMTNyZm4ltaQ==}
     engines: {browsers: 'last 2 versions, > 1%, not dead', node: '>=18.0.0'}
 
   '@octokit/auth-token@4.0.0':
@@ -3278,7 +3278,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@nuecms/sdk-builder@0.1.6':
+  '@nuecms/sdk-builder@0.2.0':
     dependencies:
       cross-fetch: 4.0.0
     transitivePeerDependencies:
