@@ -113,13 +113,15 @@ export function wxSdk(config: WeChatSDKConfig): WeChatSDK {
     const appSecret = config.appSecret
     const cacheKey = `wechat_access_token_${appId}`;
     const cached = await sdk.cacheProvider?.get(cacheKey);
-    if (cached) {
-      return cached;
+    if (cached.value) {
+      sdk.enhanceConfig({ access_token: cached?.value?.access_token });
+      return cached.value;
     }
     const response = await sdk.getAccessToken({ appid: appId, secret: appSecret, grant_type: 'client_credential' });
     // const accessToken = response.access_token;
     const expiresIn = response.expires_in || 7200;
     await sdk.cacheProvider?.set(cacheKey, response, 'json', expiresIn);
+    sdk.enhanceConfig({ access_token: response.access_token });
     return {
       access_token: response.access_token,
     };

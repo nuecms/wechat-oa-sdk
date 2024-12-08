@@ -5,8 +5,8 @@ import Redis from 'ioredis';
 
 describe('WeChat SDK Tests', () => {
   const mockConfig = {
-    appId: 'testAppId',
-    appSecret: 'testAppSecret',
+    appId: 'wx95e5a58207fb5f67',
+    appSecret: '282323a19761e2baba5e5b24ad60fa0f',
     cacheProvider: new RedisCacheProvider(new Redis()),
   };
 
@@ -14,16 +14,15 @@ describe('WeChat SDK Tests', () => {
 
   beforeAll(() => {
     sdk = wxSdk(mockConfig);
+    // Mock API Response for getAccessToken
+    const mockAccessTokenResponse = {
+      access_token: 'mockAccessToken123',
+      expires_in: 7200,
+    };
+
+    // Mock HTTP request
+    vi.spyOn(sdk, 'getAccessToken').mockResolvedValue(mockAccessTokenResponse);
   });
-
-  // Mock API Response for getAccessToken
-  const mockAccessTokenResponse = {
-    access_token: 'mockAccessToken123',
-    expires_in: 7200,
-  };
-
-  // Mock HTTP request
-  vi.spyOn(sdk, 'getAccessToken').mockResolvedValue(mockAccessTokenResponse);
 
   it('should initialize SDK correctly', () => {
     expect(sdk).toBeDefined();
