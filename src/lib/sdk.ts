@@ -5,6 +5,8 @@ interface WeChatSDKConfig {
   appSecret: string;
   baseUrl?: string;
   cacheProvider: CacheProvider;
+  customResponseTransformer?: (response: any) => any;
+  authCheckStatus?: (status: number, response: any) => boolean;
 }
 
 export {
@@ -27,6 +29,15 @@ export function wxSdk(config: WeChatSDKConfig): WeChatSDK {
       appId: config.appId,
       appSecret: config.appSecret,
     },
+    customResponseTransformer: config.customResponseTransformer || ((response: any) => {
+      if (response.errcode != 0) {
+        throw new Error(`WeChat API Error: ${response.errmsg}`);
+      }
+      return response;
+    }),
+    authCheckStatus: config.authCheckStatus || ((status, response) => {
+      return status === 401 || ((response as any)?.errcode === 40001);
+    })
   };
 
   const sdk: WeChatSDK = sdkBuilder(sdkConfig);
