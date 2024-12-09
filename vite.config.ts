@@ -12,7 +12,7 @@ export default defineConfig({
       // name: 'WxSDK',                            // Global variable for UMD build
       formats: ['es', 'cjs'],                 // Output formats
       fileName: (format) => {
-        return format === 'es' ? 'index.es.js' : 'index.js';
+        return format === 'es' ? 'index.esm.js' : 'index.js';
       }
     },
     rollupOptions: {
