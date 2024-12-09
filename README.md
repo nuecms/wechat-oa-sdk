@@ -1,7 +1,5 @@
 # **Wechat Official Accounts SDK**
 
-> WIP: development in progress
-
 A flexible and lightweight SDK for building Wechat Official Accounts with dynamic endpoints, caching, and response transformations.
 
 [![npm](https://img.shields.io/npm/v/@nuecms/wx-oa-sdk)](https://www.npmjs.com/package/@nuecms/wx-oa-sdk)
@@ -30,6 +28,7 @@ A flexible and lightweight SDK for building Wechat Official Accounts with dynami
     - [1. Import and Initialize the SDK Builder](#1-import-and-initialize-the-sdk-builder)
     - [2. Register API Endpoints](#2-register-api-endpoints)
     - [3. Make API Calls](#3-make-api-calls)
+    - [More](#more)
   - [**Usage Examples**](#usage-examples)
     - [Registering Endpoints](#registering-endpoints)
     - [Making API Calls](#making-api-calls)
@@ -77,6 +76,14 @@ sdk.r('createUser', '/users', 'POST');
 const user = await sdk.getUser({ id: '12345' });
 console.log(user);
 ```
+
+### More 
+
+see the testing code in `tests` folder
+
+exapmle:
+
+-  [tests/server/wechat.ts](tests/server/wechat.ts)
 
 ---
 
