@@ -1,6 +1,6 @@
 {
   "name": "@nuecms/wx-oa-sdk",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A flexible and lightweight WeChat Official Accounts SDK for Node.js",
   "type": "module",
   "main": "dist/index.js",
