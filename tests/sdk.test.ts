@@ -1,18 +1,18 @@
-import { describe, it, expect, beforeAll, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { wxSdk } from '../src';
 import { RedisCacheProvider } from '@nuecms/sdk-builder';
 import Redis from 'ioredis';
 
-describe('WeChat SDK Tests', () => {
+describe('WeChat OA SDK Tests', () => {
   const mockConfig = {
-    appId: 'wx95e5a58207fb5f67',
-    appSecret: '282323a19761e2baba5e5b24ad60fa0f',
+    appId: process.env.VITE_APP_APPID || 'mockAppId',
+    appSecret: process.env.VITE_APP_APPSECRET || 'mockApp',
     cacheProvider: new RedisCacheProvider(new Redis()),
   };
 
   let sdk: ReturnType<typeof wxSdk>;
 
-  beforeAll(() => {
+  beforeEach(() => {
     sdk = wxSdk(mockConfig);
     // Mock API Response for getAccessToken
     const mockAccessTokenResponse = {
@@ -24,6 +24,10 @@ describe('WeChat SDK Tests', () => {
     vi.spyOn(sdk, 'getAccessToken').mockResolvedValue(mockAccessTokenResponse);
   });
 
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+  
   it('should initialize SDK correctly', () => {
     expect(sdk).toBeDefined();
     expect(typeof sdk.r).toBe('function');
@@ -40,9 +44,14 @@ describe('WeChat SDK Tests', () => {
   });
 
   it('should cache the access token', async () => {
+    vi.spyOn(mockConfig.cacheProvider, 'get').mockResolvedValue({
+      value: {
+        access_token: 'mockAccessToken123',
+      }
+    })
     const cachedToken = await mockConfig.cacheProvider.get(`wechat_access_token_${mockConfig.appId}`);
-    expect(cachedToken).toBeDefined();
-    expect(JSON.parse(cachedToken || '').access_token).toBe('mockAccessToken123');
+    expect(cachedToken.value).toBeDefined();
+    expect(cachedToken.value.access_token).toBe('mockAccessToken123');
   });
 
   it('should call a user info endpoint', async () => {

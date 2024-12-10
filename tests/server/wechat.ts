@@ -99,8 +99,8 @@ const routes = {
   'GET /cgi-bin/token': async (req, res)=> {
     try {
       const sdk = wxSdk({
-        appId: 'wx95e5a58207fb5f67',
-        appSecret: '282323a19761e2baba5e5b24ad60fa0f',
+        appId: process.env.VITE_APP_APPID || '',
+        appSecret: process.env.VITE_APP_APPSECRET || '',
         cacheProvider: new RedisCacheProvider(new Redis()),
        }) as any;
       const response = await sdk.authenticate();

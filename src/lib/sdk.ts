@@ -124,7 +124,7 @@ export function wxSdk(config: WeChatSDKConfig): WeChatSDK {
     const appSecret = config.appSecret
     const cacheKey = `wechat_access_token_${appId}`;
     const cached = await sdk.cacheProvider?.get(cacheKey);
-    if (cached.value) {
+    if (cached?.value) {
       sdk.enhanceConfig({ access_token: cached?.value?.access_token });
       return cached.value;
     }
