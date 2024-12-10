@@ -30,9 +30,6 @@ export function wxSdk(config: WeChatSDKConfig): WeChatSDK {
       appSecret: config.appSecret,
     },
     customResponseTransformer: config.customResponseTransformer || ((response: any) => {
-      if (response.errcode != 0) {
-        throw new Error(`WeChat API Error: ${response.errmsg}`);
-      }
       return response;
     }),
     authCheckStatus: config.authCheckStatus || ((status, response) => {
